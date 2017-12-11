@@ -18,6 +18,11 @@ gulp.task('script', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
+gulp.task('img', function () {
+  return gulp.src('./src/*.png')
+    .pipe(gulp.dest('./dist/'));
+});
+
 gulp.task('sass:watch', function () {
   gulp.watch('./src/*.scss', ['sass']);
 });
@@ -30,10 +35,14 @@ gulp.task('script:watch', function () {
   gulp.watch('./src/*.js', ['script']);
 });
 
+gulp.task('img:watch', function () {
+  gulp.watch('./src/*.png', ['img']);
+});
+
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('watch', ['sass:watch', 'html:watch', 'script:watch']);
+gulp.task('watch', ['sass:watch', 'html:watch', 'script:watch', 'img:watch']);
 
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'sass', 'script', 'html']);
+gulp.task('default', ['watch', 'sass', 'script', 'html', 'img']);
