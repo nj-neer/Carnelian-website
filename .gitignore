@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/node
 
 ### Node ###
+./src/style.css
 # Logs
 logs
 *.log
