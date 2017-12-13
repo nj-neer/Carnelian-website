@@ -9,7 +9,7 @@ body{
   background-color:#282C34;
   margin: 0;
   padding: 0px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Arial';
   color:#bdc3c7;
   h1, h2{
     color:#ffffff;
@@ -21,10 +21,21 @@ body{
   border: 0;
 }
 
-.img-logo{
-  border-radius: 100px;
-  height: 60px;
-  display: inline-block;
+.logo{
+  font-family: Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img{
+    height: 64px;
+  }
+  h1{
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    margin-left: 10px;
+    font-size: 5rem;
+  }
 }
 
 hr {
