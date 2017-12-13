@@ -1,6 +1,19 @@
 var gulp = require("gulp");
 var sass = require('gulp-sass');
 
+var dep = [
+  "./node_modules/jquery/dist/jquery.min.js",
+  "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+  "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "./node_modules/animate.css/animate.min.css",
+  "./node_modules/mdi/css/materialdesignicons.min.css"
+];
+
+var fonts = [
+  "./node_modules/mdi/fonts/*",
+  "./src/fonts/Roboto-Thin.ttf"
+];
+
 
 gulp.task('sass', function () {
   return gulp.src('./src/*.scss')
@@ -21,6 +34,16 @@ gulp.task('script', function () {
 gulp.task('img', function () {
   return gulp.src('./src/*.png')
     .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('dependencies', function () {
+  return gulp.src(dep)
+    .pipe(gulp.dest('./dist/dep'));
+});
+
+gulp.task('fonts', function () {
+  return gulp.src(fonts)
+    .pipe(gulp.dest('./dist/fonts'));
 });
 
 gulp.task('sass:watch', function () {
@@ -45,4 +68,4 @@ gulp.task('watch', ['sass:watch', 'html:watch', 'script:watch', 'img:watch']);
 
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'sass', 'script', 'html', 'img']);
+gulp.task('default', ['watch', 'sass', 'script', 'html', 'img', 'fonts', 'dependencies']);

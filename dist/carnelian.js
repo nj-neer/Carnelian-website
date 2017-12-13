@@ -17,7 +17,8 @@ $.get( apiUri, function( data ) {
     $(".known-os").hide();
   }
 
-  var setupUrl = data.assets[1].browser_download_url;
+  var setupUrl = data.assets[0].browser_download_url;
+
   t.find("i").addClass("mdi-"+platform.icon);
   if(platform.assetIndex != null){
     t.attr("href", data.assets[platform.assetIndex].browser_download_url);
@@ -49,7 +50,7 @@ function checkNav() {
     r = {
       icon: "windows",
       label: "For Windows 64 bits",
-      assetIndex: 1
+      assetIndex: 0
     };
   }
   if(navigator.appVersion.indexOf("Linux") > -1){

@@ -1,4 +1,10 @@
 $main: #E53935;
+
+@font-face {
+    font-family: Roboto;
+    src: url('./fonts/Roboto-Thin.ttf');
+}
+
 body{
   background-color:#34495E;
   margin: 0;
