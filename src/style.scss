@@ -1,4 +1,7 @@
 $main: #E53935;
+$main-bg: #282C34;
+$side-bg: #21252B;
+$item-bg: #353A45;
 
 @font-face {
     font-family: Roboto;
@@ -92,6 +95,27 @@ hr {
 
 #screen{
   opacity: 0;
+}
+.list-group{
+  border-width: 0px;
+}
+.feature-item-button{
+  color: #fff;
+  background-color: $item-bg;
+  border-color: $side-bg;
+  transition-duration: 0.3s;
+  &:hover{
+    background-color: $main;
+    border-color: $main;
+  }
+  &.active{
+    background-color: transparentize($main, 0.5);
+    border-color: $main;
+    &:hover{
+      background-color: transparentize($main, 0.5);
+      border-color: $main;
+    }
+  }
 }
 
 .container{

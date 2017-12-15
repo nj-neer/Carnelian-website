@@ -75,6 +75,24 @@ hr {
 #screen {
   opacity: 0; }
 
+.list-group {
+  border-width: 0px; }
+
+.feature-item-button {
+  color: #fff;
+  background-color: #353A45;
+  border-color: #21252B;
+  transition-duration: 0.3s; }
+  .feature-item-button:hover {
+    background-color: #E53935;
+    border-color: #E53935; }
+  .feature-item-button.active {
+    background-color: rgba(229, 57, 53, 0.5);
+    border-color: #E53935; }
+    .feature-item-button.active:hover {
+      background-color: rgba(229, 57, 53, 0.5);
+      border-color: #E53935; }
+
 .container {
   position: relative;
   z-index: 2; }
