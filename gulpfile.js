@@ -32,12 +32,8 @@ gulp.task('script', function () {
 });
 
 gulp.task('img', function () {
-  return gulp.src([
-    './src/*.png',
-    './src/*.svg',
-    './src/*.jpg'
-  ])
-    .pipe(gulp.dest('./dist/'));
+  return gulp.src('./src/img/**/*')
+    .pipe(gulp.dest('./dist/img'));
 });
 
 gulp.task('dependencies', function () {
