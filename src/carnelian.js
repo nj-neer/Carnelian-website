@@ -32,6 +32,18 @@ $.get( apiUri, function( data ) {
   });
 });
 
+$(".features-button").hover(function(){
+  $(".features-button i").each(function() {
+    $(this).addClass("animated bounce");
+  });
+});
+
+$(".features-button").click(function(){
+  $('html, body').animate({
+        scrollTop: $("#features").offset().top
+    }, 1000);
+});
+
 function checkNav() {
   var r = {
     icon: null,

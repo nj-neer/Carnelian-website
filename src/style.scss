@@ -21,6 +21,10 @@ body{
   border: 0;
 }
 
+.container{
+  height: 100vh;
+}
+
 .logo{
   font-family: Roboto;
   display: flex;
@@ -45,7 +49,7 @@ hr {
 }
 
 #bg{
-  position: absolute;
+  position: fixed;
   z-index: -1;
   left: 0;
   top: 0;
@@ -58,12 +62,28 @@ hr {
 }
 
 .marged{
-  margin-top:10%;
+  margin-top:20vh;
 }
 
 .ver-num{
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.features-button{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  transition-duration: 0.5s;
+  i{
+    font-size: 4rem;
+    margin: auto 20px;
+    margin-top: -10px;
+  }
+  &:hover{
+    color: #fff;
+  }
 }
 
 #dl-url{

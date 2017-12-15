@@ -36,6 +36,11 @@ gulp.task('img', function () {
     .pipe(gulp.dest('./dist/img'));
 });
 
+gulp.task('video', function () {
+  return gulp.src('./src/video/**/*')
+    .pipe(gulp.dest('./dist/video'));
+});
+
 gulp.task('dependencies', function () {
   return gulp.src(dep)
     .pipe(gulp.dest('./dist/dep'));
@@ -68,4 +73,4 @@ gulp.task('watch', ['sass:watch', 'html:watch', 'script:watch', 'img:watch']);
 
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'sass', 'script', 'html', 'img', 'fonts', 'dependencies']);
+gulp.task('default', ['watch', 'sass', 'script', 'html', 'img', 'video', 'fonts', 'dependencies']);
