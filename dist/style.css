@@ -83,6 +83,15 @@ hr {
     border-radius: 50px;
     font-size: 3rem; }
 
+.carousel {
+  height: 600px;
+  overflow: hidden; }
+  .carousel .carousel-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem; }
+
 .item-demo {
   border: 1px #21252B solid; }
 

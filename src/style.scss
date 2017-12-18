@@ -107,6 +107,17 @@ hr {
   }
 }
 
+.carousel{
+  height: 600px;
+  overflow: hidden;
+  .carousel-control{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+  }
+}
+
 .item-demo{
   border: 1px $side-bg solid;
 }
