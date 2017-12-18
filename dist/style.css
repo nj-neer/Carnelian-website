@@ -56,19 +56,6 @@ hr {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.5); }
 
-.features-button {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  font-size: 3rem;
-  transition-duration: 0.5s; }
-  .features-button i {
-    font-size: 4rem;
-    margin: auto 20px;
-    margin-top: -10px; }
-  .features-button:hover {
-    color: #fff; }
-
 #dl-url {
   opacity: 0.3; }
 
@@ -78,20 +65,26 @@ hr {
 .list-group {
   border-width: 0px; }
 
-.feature-item-button {
-  color: #fff;
-  background-color: #353A45;
-  border-color: #21252B;
-  transition-duration: 0.3s; }
-  .feature-item-button:hover {
-    background-color: #E53935;
-    border-color: #E53935; }
-  .feature-item-button.active {
-    background-color: rgba(229, 57, 53, 0.5);
-    border-color: #E53935; }
-    .feature-item-button.active:hover {
-      background-color: rgba(229, 57, 53, 0.5);
-      border-color: #E53935; }
+.features h1 {
+  margin-bottom: 50px; }
+
+.features .feature {
+  margin-top: 40px; }
+  .features .feature .icon {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: rgba(229, 57, 53, 0.9);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 3rem; }
+
+.item-demo {
+  border: 1px #21252B solid; }
 
 .container {
   position: relative;
