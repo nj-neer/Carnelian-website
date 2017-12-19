@@ -2,9 +2,9 @@ var gulp = require("gulp");
 var sass = require('gulp-sass');
 
 var dep = [
-  "./node_modules/jquery/docs/jquery.min.js",
-  "./node_modules/bootstrap/docs/js/bootstrap.min.js",
-  "./node_modules/bootstrap/docs/css/bootstrap.min.css",
+  "./node_modules/jquery/dist/jquery.min.js",
+  "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+  "./node_modules/bootstrap/dist/css/bootstrap.min.css",
   "./node_modules/animate.css/animate.min.css",
   "./node_modules/mdi/css/materialdesignicons.min.css"
 ];
