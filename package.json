@@ -14,7 +14,8 @@
   "keywords": [
     "carnelian",
     "automation",
-    "task"
+    "task",
+    "editor"
   ],
   "author": "Cyriaque DELAUNAY",
   "license": "ISC",
@@ -24,12 +25,12 @@
   "homepage": "https://github.com/nj-neer/Carnelian-website#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0"
+    "gulp-sass": "^3.2.1"
   },
   "dependencies": {
-    "animate.css": "^3.5.2",
+    "@mdi/font": "^2.4.85",
+    "animate.css": "^3.6.1",
     "bootstrap": "^3.3.7",
-    "jquery": "^3.2.1",
-    "mdi": "^2.1.19"
+    "jquery": "^3.3.1"
   }
 }
