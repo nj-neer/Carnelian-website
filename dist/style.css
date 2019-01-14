@@ -1,19 +1,23 @@
+@import url(dependencies.css);
 @font-face {
   font-family: Roboto;
   src: url("./fonts/Roboto-Thin.ttf"); }
 
 body {
-  background-color: #282C34;
+  background-color: #282c34;
   margin: 0;
   padding: 0px;
-  font-family: 'Arial';
+  font-family: "Arial";
   color: #bdc3c7; }
-  body h1, body h2 {
+  body h1,
+  body h2 {
     color: #ffffff; }
 
 .btn-primary {
-  background-color: #E53935;
+  background-color: #e53935;
   border: 0; }
+  .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #e53935; }
 
 .container {
   height: 100vh; }
@@ -93,7 +97,7 @@ hr {
     font-size: 5rem; }
 
 .item-demo {
-  border: 1px #21252B solid; }
+  border: 1px #21252b solid; }
 
 .container {
   position: relative;
@@ -104,12 +108,12 @@ hr {
       list-style-type: none;
       display: inline-block;
       color: #bdc3c7;
-      font-family: 'Raleway', sans-serif;
+      font-family: "Raleway", sans-serif;
       margin: 5px 10px 0px 10px;
       padding-bottom: 15px;
       transition-duration: 0.3s;
       border-bottom: 1px transparent solid;
       cursor: pointer; }
     .container nav ul li:hover {
-      border-bottom: 1px #16A085 solid;
+      border-bottom: 1px #16a085 solid;
       color: #ffffff; }

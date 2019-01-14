@@ -4,7 +4,8 @@
   "description": "Website for Carnelian",
   "main": "index.html",
   "scripts": {
-    "start": "gulp",
+    "build": "gulp",
+    "dev": "gulp dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,13 +25,17 @@
   },
   "homepage": "https://github.com/nj-neer/Carnelian-website#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-sass": "^3.2.1"
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^4.0.1",
+    "gulp-sass": "^3.2.1",
+    "gulp-webserver": "^0.9.1"
   },
   "dependencies": {
-    "@mdi/font": "^2.4.85",
-    "animate.css": "^3.6.1",
-    "bootstrap": "^3.3.7",
+    "@mdi/font": "^2.8.94",
+    "animate.css": "^3.7.0",
+    "bootstrap": "^3.4.0",
     "jquery": "^3.3.1"
   }
 }
