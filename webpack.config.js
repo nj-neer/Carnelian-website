@@ -87,6 +87,7 @@ const config = {
         // static file copy
         new CopyWebpackPlugin([
             { from: './src/index.html' },
+            { from: './src/assets', to: 'assets' },
         ]),
         new VueLoaderPlugin(),
     ],
@@ -99,7 +100,7 @@ const config = {
     },
     output: {
         filename: 'carnelian.js',
-        path: path.join(__dirname, 'dist/editor'),
+        path: path.join(__dirname, 'dist'),
         publicPath: "/"
     },
     externals: {
