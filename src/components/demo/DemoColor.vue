@@ -5,11 +5,11 @@
     <div class="button" v-bind:class="{'active': showButton, 'hide': hideButton}"></div>
 
     <div class="red-cross">
-      <img src="/assets/img/red-cross.png" alt="cursor" />
+      <img src="assets/img/red-cross.png" alt="red cross" />
     </div>
 
     <div class="cursor" v-bind:class="{'moved': moveCursor}">
-      <img src="/assets/img/cursor.png" alt="cursor" />
+      <img src="assets/img/cursor.png" alt="cursor" />
     </div>
   </div>
 </template>

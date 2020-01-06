@@ -25,6 +25,7 @@ body{
         .logo{
             display: flex;
             align-items: center;
+            user-select: none;
             img{
                 height: 32px;
             }

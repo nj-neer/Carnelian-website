@@ -4,7 +4,7 @@
   <div class="demo demo-key" v-bind:class="{'active': active}">
     <div class="fake-desktop">
       <div class="audio-switch" v-bind:class="{'active': showAudio}">
-        <img :src="'/assets/img/audio-switch-'+audioIndex+'-'+state+'.png'" alt="audio" />
+        <img :src="'assets/img/audio-switch-'+audioIndex+'-'+state+'.png'" alt="audio" />
       </div>
     </div>
 
