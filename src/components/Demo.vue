@@ -1,15 +1,28 @@
 
 
   <template>
-  <div class="demo demo1" v-bind:class="{'active': active, 'hide': hideDemo}">
-    <div class="button" v-bind:class="{'active': showButton, 'hide': hideButton}"></div>
-
-    <div class="red-cross">
-      <img src="/assets/img/red-cross.png" alt="cursor" />
+  <div class="demo-container">
+    <div class="terminal-container">
+      <div class="demo-selector">
+        <ul class="nav nav-pills flex-column">
+          <li
+            class="nav-item"
+            v-for="(demo, demoIndex) in demoList"
+            v-bind:key="demoIndex"
+            @click="setDemo(demo);"
+          >
+            <a
+              class="nav-link"
+              href="#"
+              v-bind:class="{'active': demo.name === currentDemo.name}"
+            >{{demo.label}}</a>
+          </li>
+        </ul>
+      </div>
+      <terminal :demo="currentDemo"></terminal>
     </div>
-
-    <div class="cursor" v-bind:class="{'moved': moveCursor}">
-      <img src="/assets/img/cursor.png" alt="cursor" />
+    <div class="demo-showcase" v-if="currentDemo">
+      <component v-bind:is="currentDemo.name"></component>
     </div>
   </div>
 </template>
@@ -19,45 +32,70 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
+import Terminal from "./Terminal.vue";
+import DemoColor from "./demo/DemoColor.vue";
+import DemoKey from "./demo/DemoKey.vue";
 
-@Component({})
+interface IDemo {
+  name: string;
+  label: string;
+  code: string;
+}
+
+@Component({
+  data() {
+    return {
+      currentDemo: null
+    };
+  },
+  components: {
+    terminal: Terminal,
+    demoColor: DemoColor,
+    demoKey: DemoKey
+  }
+})
 export default class Demo extends Vue {
+  currentDemo: IDemo;
+
+  demoList: IDemo[] = [
+    {
+      name: "demo-color",
+      label: "Color based events",
+      code: `
+setInterval(()=> {
+  let color = carnelian.getPixelColor(50, 50);
+  if(color === '#FFFFFF'){
+      carnelian.moveMouse(50, 50);
+  }
+}, 100);`
+    },
+    {
+      name: "demo-key",
+      label: "Custom key-bind",
+      code: `
+carnelian.on('keyTap', () => {
+  carnelian.keyPress("media-next");
+});`
+    }
+  ];
+
+  setDemo(demo: IDemo) {
+    //ignore if same demo
+    if (this.currentDemo && this.currentDemo.name === demo.name) {
+      return;
+    }
+    console.log("Executing demo " + demo.name);
+    hljs.initHighlightingOnLoad();
+    this.currentDemo = demo;
+  }
+
   moveCursor = false;
   active = false;
   showButton = false;
   hideButton = false;
   hideDemo = false;
   mounted() {
-    hljs.initHighlightingOnLoad();
-    setTimeout(() => {
-      this.initDemo1();
-    }, 3000);
-  }
-
-  initDemo1() {
-    this.active = true;
-    setTimeout(() => {
-      this.showButton = true;
-      setTimeout(() => {
-        //move the cursor
-        this.moveCursor = true;
-      }, 3000);
-      setTimeout(() => {
-        //hide button
-        this.hideButton = true;
-        setTimeout(() => {
-          //fadeout demo
-          this.hideDemo = true;
-          setTimeout(() => {
-            //reset demo
-            this.moveCursor = false;
-            this.active = false;
-            this.showButton = false;
-            this.hideButton = false;
-          }, 1000);
-        }, 1000);
-      }, 4000);
-    }, 1500);
+    this.setDemo(this.demoList[0]);
   }
 }
 </script>

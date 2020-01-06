@@ -13,14 +13,8 @@
     </div>
     <div class="terminal-code">
       <pre>
-            <code class="javascript">
-setInterval(()=> {
-  let color = carnelian.getPixelColor(50, 50);
-  if(color === '#FFFFFF'){
-      carnelian.moveMouse(55, 55);
-  }
-}, 100);
-
+            <code class="javascript" v-if="demo">
+              {{demo.code}}
             </code>
         </pre>
     </div>
@@ -33,7 +27,11 @@ import Component from "vue-class-component";
 import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 
-@Component({})
+@Component({
+  props: {
+    demo: Object
+  }
+})
 export default class Terminal extends Vue {}
 </script>
 

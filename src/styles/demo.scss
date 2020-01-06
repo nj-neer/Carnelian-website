@@ -1,3 +1,22 @@
+.demo-container{
+    display: flex;
+    .terminal-container{
+        display: flex;
+        flex: 1;
+        .demo-selector{
+            padding: 10px;
+            padding-top: 40px;
+            .demo-item{
+                margin: 10px;
+            }
+        }
+    }
+    .demo-showcase{
+        flex: 1;
+        margin-left: 50px;
+    }
+}
+
 .demo{
     margin-top: -200%;
     position: relative;
@@ -9,52 +28,5 @@
     }
     &.hide{
         opacity: 0;
-    }
-}
-
-.demo1{
-    .button{
-        position: absolute;
-        top: -200%;
-        opacity: 0;
-        left: 50%;
-        width: 100px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-        border-color: #ccc;
-        font-weight: bold;
-        border-style: solid;
-        border-width: 1px 5px 5px 0px;
-        border-radius: 3px;
-        margin-left: -50px;
-        transition-duration: 0.5s;
-        &.active{
-            opacity: 1.0;
-            animation: 4s linear 1s forwards moveButtonDemo1;
-        }
-
-        &.hide{
-            opacity: 0;
-        }
-
-        @keyframes moveButtonDemo1 {
-            from { top: -200%; }
-             to   { top: 200%; }
-        }
-    }
-    .cursor{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -200px;
-        margin-top: 100px;
-        transition-duration: 1s;
-        &.moved{
-            margin-left: 5px;
-            margin-top: 5px;
-        }
     }
 }
