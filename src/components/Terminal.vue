@@ -12,11 +12,8 @@
       </div>
     </div>
     <div class="terminal-code">
-      <pre>
-            <code class="javascript" v-if="demo">
-              {{demo.code}}
-            </code>
-        </pre>
+      <!-- no line jump here -->
+      <pre><code class="javascript" v-if="demo">{{demo.code}}</code></pre>
     </div>
   </div>
 </template>
@@ -32,7 +29,12 @@ import * as hljs from "highlight.js";
     demo: Object
   }
 })
-export default class Terminal extends Vue {}
+export default class Terminal extends Vue {
+  mounted() {
+    hljs.initHighlighting.called = false;
+    hljs.initHighlighting();
+  }
+}
 </script>
 
 <style lang="sass" src="../styles/terminal.scss"></style>

@@ -19,7 +19,7 @@
           </li>
         </ul>
       </div>
-      <terminal :demo="currentDemo"></terminal>
+      <terminal :demo="currentDemo" :key="new Date().getMilliseconds()"></terminal>
     </div>
     <div class="demo-showcase" v-if="currentDemo">
       <component v-bind:is="currentDemo.name"></component>
@@ -30,8 +30,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import "highlight.js/styles/darcula.css";
-import * as hljs from "highlight.js";
 import Terminal from "./Terminal.vue";
 import DemoColor from "./demo/DemoColor.vue";
 import DemoKey from "./demo/DemoKey.vue";
@@ -62,8 +60,8 @@ export default class Demo extends Vue {
       name: "demo-color",
       label: "Color based events",
       code: `
-setInterval(()=> {
-  let color = carnelian.getPixelColor(50, 50);
+setInterval(() => {
+  const color = carnelian.getPixelColor(50, 50);
   if(color === '#FFFFFF'){
       carnelian.moveMouse(50, 50);
   }
@@ -73,8 +71,23 @@ setInterval(()=> {
       name: "demo-key",
       label: "Custom key-bind",
       code: `
-carnelian.on('keyTap', () => {
-  carnelian.keyPress("media-next");
+// ==UserScript==
+// @key F6
+// @key F7
+// @key F8
+// ==/UserScript==
+carnelian.on('keyTap', (key) => {
+  switch (key) {
+    case "F6":
+      carnelian.keyPress("audio_prev");
+      break;
+    case "F7":
+      carnelian.keyPress("audio_play");
+      break;
+    case "F8":
+      carnelian.keyPress("audio_next");
+      break;
+  }
 });`
     }
   ];
@@ -85,7 +98,10 @@ carnelian.on('keyTap', () => {
       return;
     }
     console.log("Executing demo " + demo.name);
-    hljs.initHighlightingOnLoad();
+    // remove unwanted line break from code
+
+    const parsedCode = demo.code.trim();
+    demo.code = parsedCode;
     this.currentDemo = demo;
   }
 
