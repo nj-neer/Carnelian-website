@@ -1,6 +1,63 @@
 .demo-key{
+    .fake-desktop{
+        background-image: url('/assets/img/desktop.jpg');
+        background-size: auto 100%;
+        
+        width: 500px;
+        height: 400px;
+        position: relative;
+
+        .audio-switch{
+            opacity: 0;
+            transition-duration: 0.1s;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            img{
+                height: 75px;
+            }
+            &.active{
+                opacity: 1.0;
+            }
+        }
+    }
+    
+
     .fake-keyboard{
         display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -150px;
         
+        .key{
+            position: relative;
+            background-color: #fff;
+            border: 1px rgb(212, 212, 212) solid;
+            border-bottom-width: 5px;
+            border-right-width: 3px;
+            margin: 5px;
+            padding: 5px;
+            width: 40px;
+            text-align: center;
+            user-select: none;
+            color: #212121;
+            font-weight: bold;
+            border-radius: 3px;
+            opacity: 0.5;
+
+            &.active{
+                animation: 1s  pressBtn;
+            }
+            @keyframes pressBtn {
+                from {
+                    opacity: 1.0;
+                    margin-bottom: -5px;
+                    box-shadow: 2px 2px 10px rgba($color: #fff, $alpha: 0.4);
+                }
+                to {
+                    opacity: 0.5;
+                }
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 .demo-color{
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 250px;
 
     .button{
         position: absolute;
@@ -49,8 +49,8 @@
         margin-top: 100px;
         transition-duration: 1s;
         &.moved{
-            margin-left: 5px;
-            margin-top: 5px;
+            margin-left: 0px;
+            margin-top: 0px;
         }
     }
 }

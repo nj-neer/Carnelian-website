@@ -11,11 +11,11 @@
             v-bind:key="demoIndex"
             @click="setDemo(demo);"
           >
-            <a
+            <span
               class="nav-link"
               href="#"
-              v-bind:class="{'active': demo.name === currentDemo.name}"
-            >{{demo.label}}</a>
+              v-bind:class="{'active': currentDemo && demo.name === currentDemo.name}"
+            >{{demo.label}}</span>
           </li>
         </ul>
       </div>

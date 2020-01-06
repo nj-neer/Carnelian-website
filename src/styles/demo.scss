@@ -1,11 +1,16 @@
 .demo-container{
     display: flex;
+    height: 500px;
+    align-items: flex-start;
     .terminal-container{
         display: flex;
         flex: 1;
         .demo-selector{
             padding: 10px;
             padding-top: 40px;
+            .nav-link{
+                cursor: pointer;
+            }
             .demo-item{
                 margin: 10px;
             }
