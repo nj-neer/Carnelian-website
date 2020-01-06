@@ -6,7 +6,7 @@
         <span>CARNELIAN</span>
       </div>
       <div class="menu">
-        <div class="item">Hello</div>
+        <div class="item"></div>
       </div>
     </nav>
     <div class="container">
@@ -18,9 +18,10 @@
             class="lead"
           >Userscripts are nice , right ? But what about making them more powerfull and using them on your desktop ?</p>
           <hr class="my-4" />
-          <a class="btn btn-primary btn-lg" href="#" role="button">Download</a>
+          <p>[ Coming soon ! ]</p>
+          <!-- <a class="btn btn-primary disabled btn-lg" href="#" role="button">Download</a>
           or
-          <a class="btn btn-secondary btn-lg" href="#" role="button">Try the editor</a>
+          <a class="btn btn-secondary btn-lg" href="#" role="button">Try the editor</a>-->
         </div>
       </div>
     </div>
