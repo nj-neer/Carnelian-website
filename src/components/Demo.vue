@@ -76,16 +76,16 @@ setInterval(() => {
 // @key F7
 // @key F8
 // ==/UserScript==
-carnelian.on('keyTap', (key) => {
+carnelian.on('keyPress', (key) => {
   switch (key) {
     case "F6":
-      carnelian.keyPress("audio_prev");
+      carnelian.keyTap("audio_prev");
       break;
     case "F7":
-      carnelian.keyPress("audio_play");
+      carnelian.keyTap("audio_play");
       break;
     case "F8":
-      carnelian.keyPress("audio_next");
+      carnelian.keyTap("audio_next");
       break;
   }
 });`

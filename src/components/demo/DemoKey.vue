@@ -9,7 +9,6 @@
     </div>
 
     <div class="fake-keyboard">
-      <div class="key" id="k-f5">F5</div>
       <div class="key" id="k-f6">F6</div>
       <div class="key" id="k-f7">F7</div>
       <div class="key" id="k-f8">F8</div>
