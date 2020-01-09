@@ -15,7 +15,7 @@ const config = {
     devServer: {
         hot: true,
         historyApiFallback: true,
-        writeToDisk: true,
+        writeToDisk: false,
     },
 
     module: {
