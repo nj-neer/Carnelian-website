@@ -1,14 +1,6 @@
 <template>
   <div class="carnelian">
-    <nav>
-      <div class="logo">
-        <img src="assets/img/logo-hd.png" alt="Carnelian" />
-        <span>CARNELIAN</span>
-      </div>
-      <div class="menu">
-        <div class="item"></div>
-      </div>
-    </nav>
+    <navbar />
     <div class="container">
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -38,10 +30,13 @@ import Component from "vue-class-component";
 import Terminal from "./components/Terminal.vue";
 import Demo from "./components/Demo.vue";
 import "bootstrap/dist/js/bootstrap.bundle";
+import NavBar from "./components/NavBar.vue";
+
 @Component({
   components: {
     terminal: Terminal,
-    demo: Demo
+    demo: Demo,
+    navbar: NavBar
   }
 })
 export default class App extends Vue {
