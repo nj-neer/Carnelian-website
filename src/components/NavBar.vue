@@ -65,47 +65,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="mdi mdi-email"></i>
-                  </div>
-                </div>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                />
-              </div>
-
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="mdi mdi-key"></i>
-                  </div>
-                </div>
-
-                <input type="password" class="form-control" id="exampleInputPassword1" />
-              </div>
-              <br />
-              <button type="submit" class="btn btn-primary btn-block">Submit</button>
-            </form>
-
-            <hr />
-            <center>
-              <span>OR</span>
-            </center>
-
-            <button type="submit" class="btn btn-outline-dark btn-block">
-              <i class="mdi mdi-github-circle"></i>
-              LOG IN WITH GITHUB
-            </button>
-
-            <button type="submit" class="btn btn-outline-danger btn-block">
-              <i class="mdi mdi-google"></i> LOG IN WITH GOOGLE
-            </button>
+            <login-form />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -122,8 +82,12 @@ import * as $ from "jquery";
 import Component from "vue-class-component";
 import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
+import LoginForm from "./LoginForm.vue";
 
 @Component({
+  components: {
+    loginForm: LoginForm
+  },
   props: {}
 })
 export default class NavBar extends Vue {
