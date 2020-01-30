@@ -48,14 +48,19 @@
           </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
-            <a class="nav-link" href="#">Sign in</a>
+          <router-link to="/signup">
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Sign up</a>
+            </li>
+          </router-link>
+          <li class="nav-item" data-toggle="modal" data-target="#loginModal">
+            <a class="nav-link" href="#">Login</a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <div class="modal fade" tabindex="-1" id="exampleModal" role="dialog">
+    <div class="modal fade" tabindex="-1" id="loginModal" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -83,10 +88,12 @@ import Component from "vue-class-component";
 import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 import LoginForm from "./LoginForm.vue";
+import SignupForm from "./SignupForm.vue";
 
 @Component({
   components: {
-    loginForm: LoginForm
+    loginForm: LoginForm,
+    signupForm: SignupForm
   },
   props: {}
 })
