@@ -1,25 +1,8 @@
 <template>
   <div class="carnelian">
     <navbar />
-    <div class="container">
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <img src="assets/img/logo-hd.png" height="80" alt="Carnelian" />
-          <h1 class="display-4">The power of userscripts on your desktop</h1>
-          <p
-            class="lead"
-          >Userscripts are nice , right ? But what about making them more powerful and using them on your desktop ?</p>
-          <hr class="my-4" />
-          <p>[ Coming soon ! ]</p>
-          <!-- <a class="btn btn-primary disabled btn-lg" href="#" role="button">Download</a>
-          or
-          <a class="btn btn-secondary btn-lg" href="#" role="button">Try the editor</a>-->
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <demo></demo>
+    <div class="container main-container">
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -28,15 +11,14 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import Terminal from "./components/Terminal.vue";
-import Demo from "./components/Demo.vue";
+
 import "bootstrap/dist/js/bootstrap.bundle";
 import NavBar from "./components/NavBar.vue";
-
+import Main from "./components/Main.vue";
 @Component({
   components: {
-    terminal: Terminal,
-    demo: Demo,
-    navbar: NavBar
+    navbar: NavBar,
+    welcome: Main
   }
 })
 export default class App extends Vue {
