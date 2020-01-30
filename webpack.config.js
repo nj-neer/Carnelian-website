@@ -5,7 +5,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const config = {
     mode: 'development',
-    entry: ['./src/scripts/carnelian.ts'],
+    entry: ['./src/index.ts'],
     target: 'web',
     watchOptions: {
         poll: true,
