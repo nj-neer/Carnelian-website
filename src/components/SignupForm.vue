@@ -3,6 +3,23 @@
     <h1>Create a new account</h1>
 
     <div class="col-6">
+      <div class="alert alert-success" v-if="signupSuccess">
+        <h5>Check your mails</h5>
+        <p>
+          Your account has been created but need to be activated.
+          <br />Please follow the instructions in the mail we send you at
+          <b>{{email}}</b>
+          <br />
+          <a href="/">Go back</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-6" v-if="!signupSuccess">
+      <div class="alert alert-danger" role="alert" v-if="errorMessage">
+        <span>{{errorMessage}}</span>
+      </div>
+
       <form @submit="handleAccountCreation">
         <label for="basic-url">Email</label>
         <div class="input-group mb-3">
@@ -100,17 +117,21 @@ import isEmail from "validator/lib/isEmail";
       username: String,
       password: String,
       password_re: String,
-      canSubmit: Boolean
+      canSubmit: Boolean,
+      signupSuccess: Boolean,
+      errorMessage: String
     };
   }
 })
 export default class SignupForm extends Vue {
-  apipath = "api.carnelian.io";
+  apipath = "http://127.0.0.1:3000"; // http://127.0.0.1:3000 // https://carnelian-api.herokuapp.com
   email: string;
   username: string;
   password: string;
   password_re: string;
   canSubmit: boolean;
+  signupSuccess: boolean = false;
+  errorMessage: string;
 
   get isPasswordValid(): boolean {
     if (this.password.length < 6 || this.password.length > 32) {
@@ -154,17 +175,30 @@ export default class SignupForm extends Vue {
     this.username = "";
     this.password = "";
     this.password_re = "";
+    this.signupSuccess = false;
+    this.errorMessage = null;
   }
 
-  handleAccountCreation() {
+  handleAccountCreation(e) {
+    e.preventDefault();
     if (!this.canSubmit) {
       return;
     }
-    axios.post(this.apipath + "/user", {
-      email: this.email,
-      username: this.username,
-      password: this.password
-    });
+    axios
+      .post(this.apipath + "/register", {
+        email: this.email,
+        username: this.username,
+        password: this.password
+      })
+      .then(response => {
+        this.signupSuccess = true;
+        this.errorMessage = null;
+      })
+      .catch(response => {
+        this.signupSuccess = false;
+        const errors = response.response.data.errors.msg;
+        this.errorMessage = errors;
+      });
   }
 }
 </script>
