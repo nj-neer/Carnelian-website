@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
+      <router-link class="navbar-brand" to="/">
         <img
           src="/assets/img/logo-hd.png"
           width="24"
@@ -10,7 +10,7 @@
           alt="Carnelian icon"
         />
         Carnelian
-      </a>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"

@@ -10,7 +10,7 @@
           <br />Please follow the instructions in the mail we send you at
           <b>{{email}}</b>
           <br />
-          <a href="/">Go back</a>
+          <router-link to="/">Go back</router-link>
         </p>
       </div>
     </div>
