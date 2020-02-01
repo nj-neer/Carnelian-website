@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import App from "./App.vue";
 import Main from "./components/Main.vue";
 import SignupForm from "./components/SignupForm.vue";
+import Verify from "./components/Verify.vue";
 
 const routes = [
     {
@@ -10,6 +11,9 @@ const routes = [
     },
     {
         path: "/signup", component: SignupForm
+    },
+    {
+        path: "/verify", component: Verify
     },
     { path: "*", redirect: "/" }
 ];
