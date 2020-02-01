@@ -47,7 +47,7 @@
             <a class="nav-link disabled" href="#">Docs</a>
           </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" v-if="!user">
           <router-link to="/signup">
             <li class="nav-item">
               <a class="nav-link" href="/signup">Sign up</a>
@@ -57,6 +57,16 @@
             <a class="nav-link" href="#">Login</a>
           </li>
         </ul>
+        <!-- logged in -->
+        <ul class="navbar-nav" v-if="user">
+          <li class="nav-item">
+            <a href="#" class="d-flex align-items-center">
+              <span class="nav-link">{{user.username}}</span>
+              <img class="img-fluid rounded-circle" src="https://picsum.photos/32/32" alt />
+            </a>
+          </li>
+        </ul>
+        <!--  / logged in -->
       </div>
     </nav>
 
@@ -89,19 +99,45 @@ import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 import LoginForm from "./LoginForm.vue";
 import SignupForm from "./SignupForm.vue";
+import Axios from "axios";
 
 @Component({
   components: {
     loginForm: LoginForm,
     signupForm: SignupForm
   },
-  props: {}
+  props: {},
+  data: () => {
+    return {
+      user: Object
+    };
+  }
 })
 export default class NavBar extends Vue {
+  user: any;
+  apiPath = "http://127.0.0.1:3000";
+
   mounted() {
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
     });
+
+    this.getUserInfos();
+  }
+
+  getUserInfos() {
+    if (localStorage.getItem("cnl_user")) {
+      this.user = localStorage.getItem("cnl_user");
+      if (localStorage.getItem("cnl_token")) {
+        Axios.get(this.apiPath + "/profile", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("cnl_token")
+          }
+        }).then(response => {
+          this.user = response.data;
+        });
+      }
+    }
   }
 }
 </script>

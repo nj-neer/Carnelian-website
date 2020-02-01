@@ -117,6 +117,7 @@ export default class LoginForm extends Vue {
       .then(response => {
         localStorage.setItem("cnl_token", response.data.token);
         localStorage.setItem("cnl_user", response.data.user);
+        location.reload();
       })
       .catch(() => {
         this.error = true;
