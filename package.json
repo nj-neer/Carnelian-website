@@ -38,6 +38,7 @@
     "file-loader": "^5.0.2",
     "highlight.js": "^9.17.1",
     "jquery": "^3.4.1",
+    "md5": "^2.2.1",
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "script-loader": "^0.7.2",

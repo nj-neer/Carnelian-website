@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App.vue";
+import Account from "./components/Account.vue";
 import Main from "./components/Main.vue";
 import SignupForm from "./components/SignupForm.vue";
 import Verify from "./components/Verify.vue";
@@ -14,6 +15,9 @@ const routes = [
     },
     {
         path: "/verify", component: Verify
+    },
+    {
+        path: "/account", component: Account
     },
     { path: "*", redirect: "/" }
 ];

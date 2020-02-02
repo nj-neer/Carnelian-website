@@ -71,11 +71,18 @@
                 aria-expanded="false"
               >
                 <span class="nav-link">{{user.username}}</span>
-                <img class="img-fluid rounded-circle" src="https://picsum.photos/32/32" alt />
+                <img
+                  class="img-fluid rounded-circle"
+                  :src="getAvatarUrl()"
+                  style="height:32px;"
+                  alt="avatar"
+                />
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userOptions">
-                <a class="dropdown-item" href="#">My profil</a>
+                <router-link to="/account" class="dropdown-item">
+                  <span>My account</span>
+                </router-link>
                 <a class="dropdown-item text-danger" href="#" @click="disconnect()">Disconnect</a>
               </div>
             </div>
@@ -115,6 +122,7 @@ import * as hljs from "highlight.js";
 import LoginForm from "./LoginForm.vue";
 import SignupForm from "./SignupForm.vue";
 import Axios from "axios";
+import * as md5 from "md5";
 
 @Component({
   components: {
@@ -159,6 +167,14 @@ export default class NavBar extends Vue {
           });
       }
     }
+  }
+
+  getAvatarUrl(): string {
+    if (!this.user || !this.user.email) {
+      return "";
+    }
+    const mailHash = md5(this.user.email);
+    return "https://www.gravatar.com/avatar/" + mailHash;
   }
 
   disconnect() {
