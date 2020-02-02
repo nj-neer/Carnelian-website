@@ -60,10 +60,25 @@
         <!-- logged in -->
         <ul class="navbar-nav" v-if="user">
           <li class="nav-item">
-            <a href="#" class="d-flex align-items-center">
-              <span class="nav-link">{{user.username}}</span>
-              <img class="img-fluid rounded-circle" src="https://picsum.photos/32/32" alt />
-            </a>
+            <div class="dropdown">
+              <a
+                href="#"
+                class="d-flex align-items-center btn-sm btn dropdown-toggle"
+                role="button"
+                id="userOptions"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="nav-link">{{user.username}}</span>
+                <img class="img-fluid rounded-circle" src="https://picsum.photos/32/32" alt />
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userOptions">
+                <a class="dropdown-item" href="#">My profil</a>
+                <a class="dropdown-item text-danger" href="#" @click="disconnect()">Disconnect</a>
+              </div>
+            </div>
           </li>
         </ul>
         <!--  / logged in -->
@@ -118,6 +133,7 @@ export default class NavBar extends Vue {
   apiPath = "http://127.0.0.1:3000";
 
   mounted() {
+    this.user = null;
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
     });
@@ -133,11 +149,22 @@ export default class NavBar extends Vue {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("cnl_token")
           }
-        }).then(response => {
-          this.user = response.data;
-        });
+        })
+          .then(response => {
+            this.user = response.data;
+          })
+          .catch(() => {
+            // invalid user or disconnected
+            this.disconnect();
+          });
       }
     }
+  }
+
+  disconnect() {
+    this.user = null;
+    localStorage.removeItem("cnl_token");
+    localStorage.removeItem("cnl_user");
   }
 }
 </script>
