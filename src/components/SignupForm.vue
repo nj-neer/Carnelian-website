@@ -107,6 +107,7 @@ import * as hljs from "highlight.js";
 import axios from "axios";
 import { Watch, Inject } from "vue-property-decorator";
 import isEmail from "validator/lib/isEmail";
+import config from "../config.json";
 
 @Component({
   name: "signup-form",
@@ -124,7 +125,6 @@ import isEmail from "validator/lib/isEmail";
   }
 })
 export default class SignupForm extends Vue {
-  apipath = "http://127.0.0.1:3000"; // http://127.0.0.1:3000 // https://carnelian-api.herokuapp.com
   email: string;
   username: string;
   password: string;
@@ -185,7 +185,7 @@ export default class SignupForm extends Vue {
       return;
     }
     axios
-      .post(this.apipath + "/register", {
+      .post(config.API_URL + "/register", {
         email: this.email,
         username: this.username,
         password: this.password

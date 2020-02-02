@@ -27,6 +27,7 @@ import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 import axios from "axios";
 import { Watch, Inject } from "vue-property-decorator";
+import config from "../config.json";
 
 @Component({
   name: "signup-form",
@@ -40,7 +41,6 @@ import { Watch, Inject } from "vue-property-decorator";
   }
 })
 export default class Verify extends Vue {
-  apiPath = "http://127.0.0.1:3000"; // http://127.0.0.1:3000 // https://carnelian-api.herokuapp.com
   processing: boolean;
   error: boolean;
   success: boolean;
@@ -59,7 +59,7 @@ export default class Verify extends Vue {
     }
 
     axios
-      .post(this.apiPath + "/verify", {
+      .post(config.API_URL + "/verify", {
         id: token
       })
       .then(() => {

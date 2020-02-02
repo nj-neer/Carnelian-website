@@ -72,6 +72,7 @@ import Component from "vue-class-component";
 import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 import axios from "axios";
+import config from "../config.json";
 
 @Component({
   name: "login-form",
@@ -90,7 +91,6 @@ export default class LoginForm extends Vue {
   password: string;
   processing: boolean;
   error: boolean;
-  apiPath = "http://127.0.0.1:3000";
   mounted() {
     this.email = "";
     this.password = "";
@@ -110,7 +110,7 @@ export default class LoginForm extends Vue {
     e.preventDefault();
     this.processing = true;
     axios
-      .post(this.apiPath + "/login", {
+      .post(config.API_URL + "/login", {
         email: this.email,
         password: this.password
       })

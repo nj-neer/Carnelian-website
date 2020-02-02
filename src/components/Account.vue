@@ -36,6 +36,9 @@ import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 import axios from "axios";
 import * as md5 from "md5";
+import config from "../config.json";
+import { getGravatarUrl } from "../Helpers";
+import IUser from "../interfaces/User.interface";
 
 @Component({
   name: "account",
@@ -49,10 +52,9 @@ import * as md5 from "md5";
   }
 })
 export default class account extends Vue {
-  user: any;
+  user: IUser;
   error: boolean;
   processing: boolean;
-  apiPath = "http://127.0.0.1:3000";
   mounted() {
     this.processing = true;
     $(function() {
@@ -64,7 +66,7 @@ export default class account extends Vue {
   getInfos() {
     if (localStorage.getItem("cnl_token")) {
       axios
-        .get(this.apiPath + "/profile", {
+        .get(config.API_URL + "/profile", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("cnl_token")
           }
@@ -83,11 +85,7 @@ export default class account extends Vue {
   }
 
   getAvatarUrl(): string {
-    if (!this.user || !this.user.email) {
-      return "";
-    }
-    const mailHash = md5(this.user.email);
-    return "https://www.gravatar.com/avatar/" + mailHash;
+    return getGravatarUrl(this.user);
   }
 }
 </script>

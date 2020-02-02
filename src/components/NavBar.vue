@@ -122,7 +122,9 @@ import * as hljs from "highlight.js";
 import LoginForm from "./LoginForm.vue";
 import SignupForm from "./SignupForm.vue";
 import Axios from "axios";
-import * as md5 from "md5";
+import { getGravatarUrl, disconnect } from "../Helpers";
+import config from "../config.json";
+import IUser from "../interfaces/User.interface";
 
 @Component({
   components: {
@@ -137,8 +139,8 @@ import * as md5 from "md5";
   }
 })
 export default class NavBar extends Vue {
-  user: any;
-  apiPath = "http://127.0.0.1:3000";
+  user: IUser;
+  apiUrl = config.API_URL;
 
   mounted() {
     this.user = null;
@@ -151,9 +153,8 @@ export default class NavBar extends Vue {
 
   getUserInfos() {
     if (localStorage.getItem("cnl_user")) {
-      this.user = localStorage.getItem("cnl_user");
       if (localStorage.getItem("cnl_token")) {
-        Axios.get(this.apiPath + "/profile", {
+        Axios.get(config.API_URL + "/profile", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("cnl_token")
           }
@@ -170,17 +171,12 @@ export default class NavBar extends Vue {
   }
 
   getAvatarUrl(): string {
-    if (!this.user || !this.user.email) {
-      return "";
-    }
-    const mailHash = md5(this.user.email);
-    return "https://www.gravatar.com/avatar/" + mailHash;
+    return getGravatarUrl(this.user);
   }
 
   disconnect() {
     this.user = null;
-    localStorage.removeItem("cnl_token");
-    localStorage.removeItem("cnl_user");
+    disconnect();
   }
 }
 </script>
