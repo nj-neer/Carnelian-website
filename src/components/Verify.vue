@@ -27,7 +27,7 @@ import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 import axios from "axios";
 import { Watch, Inject } from "vue-property-decorator";
-import config from "../config.json";
+declare const window: any;
 
 @Component({
   name: "signup-form",
@@ -59,7 +59,7 @@ export default class Verify extends Vue {
     }
 
     axios
-      .post(config.API_URL + "/verify", {
+      .post(window.config.API_URL + "/verify", {
         id: token
       })
       .then(() => {

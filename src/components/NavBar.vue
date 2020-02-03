@@ -123,8 +123,8 @@ import LoginForm from "./LoginForm.vue";
 import SignupForm from "./SignupForm.vue";
 import Axios from "axios";
 import { getGravatarUrl, disconnect } from "../Helpers";
-import config from "../config.json";
 import IUser from "../interfaces/User.interface";
+declare const window: any;
 
 @Component({
   components: {
@@ -140,7 +140,7 @@ import IUser from "../interfaces/User.interface";
 })
 export default class NavBar extends Vue {
   user: IUser;
-  apiUrl = config.API_URL;
+  apiUrl = window.config.API_URL;
 
   mounted() {
     this.user = null;
@@ -154,7 +154,7 @@ export default class NavBar extends Vue {
   getUserInfos() {
     if (localStorage.getItem("cnl_user")) {
       if (localStorage.getItem("cnl_token")) {
-        Axios.get(config.API_URL + "/profile", {
+        Axios.get(window.config.API_URL + "/profile", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("cnl_token")
           }

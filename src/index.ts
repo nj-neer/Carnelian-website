@@ -1,3 +1,4 @@
+
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App.vue";
@@ -5,7 +6,11 @@ import Account from "./components/Account.vue";
 import Main from "./components/Main.vue";
 import SignupForm from "./components/SignupForm.vue";
 import Verify from "./components/Verify.vue";
-
+// tslint:disable-next-line: no-var-requires
+const config = require("../config.json");
+// tslint:disable-next-line: no-var-requires
+const devConfig = require("../config.dev.json");
+declare let window: any;
 const routes = [
     {
         path: "/", component: Main
@@ -31,6 +36,11 @@ const router = new VueRouter({
 });
 
 Vue.use(VueRouter);
+
+window.config = config;
+if (Vue.config.devtools) {  // set the dev config if we are in dev mode
+    window.config = devConfig;
+}
 
 // tslint:disable-next-line: no-unused-expression
 new Vue({

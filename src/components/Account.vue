@@ -36,9 +36,9 @@ import "highlight.js/styles/darcula.css";
 import * as hljs from "highlight.js";
 import axios from "axios";
 import * as md5 from "md5";
-import config from "../config.json";
 import { getGravatarUrl } from "../Helpers";
 import IUser from "../interfaces/User.interface";
+declare const window: any;
 
 @Component({
   name: "account",
@@ -66,7 +66,7 @@ export default class account extends Vue {
   getInfos() {
     if (localStorage.getItem("cnl_token")) {
       axios
-        .get(config.API_URL + "/profile", {
+        .get(window.config.API_URL + "/profile", {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("cnl_token")
           }

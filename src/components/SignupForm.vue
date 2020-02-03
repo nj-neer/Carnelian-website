@@ -107,7 +107,7 @@ import * as hljs from "highlight.js";
 import axios from "axios";
 import { Watch, Inject } from "vue-property-decorator";
 import isEmail from "validator/lib/isEmail";
-import config from "../config.json";
+declare const window: any;
 
 @Component({
   name: "signup-form",
@@ -185,7 +185,7 @@ export default class SignupForm extends Vue {
       return;
     }
     axios
-      .post(config.API_URL + "/register", {
+      .post(window.config.API_URL + "/register", {
         email: this.email,
         username: this.username,
         password: this.password
