@@ -10,7 +10,7 @@
         <label for="avatarForm">Avatar</label>
         <div>
           <img :src="getAvatarUrl()" alt="avatar" />
-          <div class="ml-2 btn btn-sm btn-primary disabled">Change</div>
+          <a class="ml-2 btn btn-sm btn-primary" href="https://gravatar.com" target="_blank">Change</a>
         </div>
       </div>
       <div class="form-group">
@@ -23,6 +23,41 @@
           placeholder="Username"
           v-model="user.username"
         />
+      </div>
+      <div class="form-group">
+        <label for="githublink">
+          <i class="mdi mdi-github-circle mr-2"></i> Github Account
+        </label>
+
+        <span class="not-linked" v-if="!user.github_id">
+          <div class="badge badge-secondary ml-4">Not linked</div>
+          <div class="btn btn-block btn-secondary">
+            <i class="mdi mdi-github-circle"></i> Link my Github account
+          </div>
+        </span>
+
+        <span class="linked" v-if="user.github_id">
+          <div class="badge badge-success ml-4">Linked</div>
+          <div class="row d-flex align-items-center justify-content-start">
+            <div class="col-6">
+              <img
+                class="rounded-circle mr-2"
+                :src="getAvatarUrl()"
+                height="18"
+                :alt="user.username"
+              />
+              <span>
+                Connected as
+                <i>{{user.username}}</i>
+              </span>
+            </div>
+            <div class="col-6 text-right">
+              <div class="btn btn-sm btn-outline-danger">
+                <i class="mdi mdi-close"></i> Unlink
+              </div>
+            </div>
+          </div>
+        </span>
       </div>
     </form>
   </div>
