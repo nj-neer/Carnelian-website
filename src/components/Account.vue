@@ -31,7 +31,7 @@
 
         <span class="not-linked" v-if="!user.github_id">
           <div class="badge badge-secondary ml-4">Not linked</div>
-          <div class="btn btn-block btn-secondary">
+          <div class="btn btn-block btn-secondary" @click="handleGithubLink">
             <i class="mdi mdi-github-circle"></i> Link my Github account
           </div>
         </span>
@@ -95,6 +95,9 @@ export default class account extends Vue {
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
     });
+    if (this.$route.query.link && this.$route.query.code) {
+      this.linkGithubAccount(String(this.$route.query.code));
+    }
     this.getInfos();
   }
 
@@ -121,6 +124,28 @@ export default class account extends Vue {
 
   getAvatarUrl(): string {
     return getGravatarUrl(this.user);
+  }
+
+  handleGithubLink() {
+    document.location.href =
+      "https://github.com/login/oauth/authorize?client_id=e7a85ec74a552b7536a7&redirect_uri=http://www.carnelian.io/account?link=true&type=github";
+  }
+
+  /**
+   * Link the user with a github account
+   */
+  linkGithubAccount(code: string) {
+    axios
+      .post(window.config.API_URL + "/link_github", {
+        code: code,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("cnl_token")
+        }
+      })
+      .then(() => {
+        //account linked, reload
+        location.reload();
+      });
   }
 }
 </script>
