@@ -136,7 +136,7 @@ export default class account extends Vue {
    */
   linkGithubAccount(code: string) {
     axios
-      .post(window.config.API_URL + "/link_github", {
+      .post(window.config.API_URL + "/profile/linkGithub", {
         code: code,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("cnl_token")
