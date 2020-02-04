@@ -29,14 +29,14 @@
           <i class="mdi mdi-github-circle mr-2"></i> Github Account
         </label>
 
-        <span class="not-linked" v-if="!user.github_id">
+        <span class="not-linked" v-if="!user.githubId">
           <div class="badge badge-secondary ml-4">Not linked</div>
           <div class="btn btn-block btn-secondary" @click="handleGithubLink">
             <i class="mdi mdi-github-circle"></i> Link my Github account
           </div>
         </span>
 
-        <span class="linked" v-if="user.github_id">
+        <span class="linked" v-if="user.githubId">
           <div class="badge badge-success ml-4">Linked</div>
           <div class="row d-flex align-items-center justify-content-start">
             <div class="col-6">
@@ -136,15 +136,19 @@ export default class account extends Vue {
    */
   linkGithubAccount(code: string) {
     axios
-      .post(window.config.API_URL + "/profile/linkGithub", {
-        code: code,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("cnl_token")
+      .post(
+        window.config.API_URL + "/profile/linkGithub",
+        {
+          code: code
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("cnl_token")
+          }
         }
-      })
-      .then(() => {
-        //account linked, reload
-        location.reload();
+      )
+      .then(response => {
+        this.user.githubId = response.data.githubId;
       });
   }
 }

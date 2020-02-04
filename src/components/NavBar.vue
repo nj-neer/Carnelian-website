@@ -164,7 +164,7 @@ export default class NavBar extends Vue {
           })
           .catch(() => {
             // invalid user or disconnected
-            this.disconnect();
+            // this.disconnect();
           });
       }
     }
