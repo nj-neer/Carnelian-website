@@ -196,7 +196,13 @@ export default class SignupForm extends Vue {
       })
       .catch(response => {
         this.signupSuccess = false;
-        const errors = response.response.data.errors.msg;
+        let errors;
+        try {
+          errors = response.data.errors.msg;
+        } catch (e) {
+          errors = "UNKNOWN_ERROR";
+        }
+
         this.errorMessage = errors;
       });
   }
