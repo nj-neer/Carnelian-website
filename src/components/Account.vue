@@ -48,12 +48,27 @@
               />
               <span>
                 Connected as
-                <i>{{user.githubName}}</i>
+                <i>
+                  <a
+                    :href="'https://github.com/'+user.githubName"
+                    target="_blank"
+                  >{{user.githubName}}</a>
+                </i>
               </span>
             </div>
             <div class="col-6 text-right">
-              <div class="btn btn-sm btn-outline-danger">
-                <i class="mdi mdi-close"></i> Unlink
+              <div
+                class="btn btn-sm btn-outline-danger"
+                @click="handleGithubUnlink()"
+                v-bind:class="{'disabled': unlinkProcessing}"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                  v-if="unlinkProcessing"
+                ></span>
+                <i class="mdi mdi-close" v-if="!unlinkProcessing"></i> Unlink
               </div>
             </div>
           </div>
@@ -81,6 +96,7 @@ declare const window: any;
   data: () => {
     return {
       user: Object,
+      unlinkProcessing: Boolean,
       processing: Boolean,
       error: Boolean
     };
@@ -89,9 +105,11 @@ declare const window: any;
 export default class account extends Vue {
   user: IUser;
   error: boolean;
+  unlinkProcessing: boolean;
   processing: boolean;
   mounted() {
     this.processing = true;
+    this.unlinkProcessing = false;
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
     });
@@ -149,6 +167,25 @@ export default class account extends Vue {
       )
       .then(response => {
         this.user = response.data;
+      });
+  }
+
+  handleGithubUnlink() {
+    if (this.unlinkProcessing) {
+      return;
+    }
+    this.unlinkProcessing = true;
+    axios
+      .post(window.config.API_URL + "/profile/unlinkGithub", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("cnl_token")
+        }
+      })
+      .then(response => {
+        this.user = response.data;
+      })
+      .finally(() => {
+        this.unlinkProcessing = false;
       });
   }
 }
