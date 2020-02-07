@@ -44,11 +44,11 @@
                 class="rounded-circle mr-2"
                 :src="getAvatarUrl()"
                 height="18"
-                :alt="user.username"
+                :alt="user.githubName"
               />
               <span>
                 Connected as
-                <i>{{user.username}}</i>
+                <i>{{user.githubName}}</i>
               </span>
             </div>
             <div class="col-6 text-right">
@@ -148,7 +148,7 @@ export default class account extends Vue {
         }
       )
       .then(response => {
-        this.user.githubId = response.data.githubId;
+        this.user = response.data;
       });
   }
 }
