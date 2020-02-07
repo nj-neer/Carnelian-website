@@ -176,11 +176,15 @@ export default class account extends Vue {
     }
     this.unlinkProcessing = true;
     axios
-      .post(window.config.API_URL + "/profile/unlinkGithub", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("cnl_token")
+      .post(
+        window.config.API_URL + "/profile/unlinkGithub",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("cnl_token")
+          }
         }
-      })
+      )
       .then(response => {
         this.user = response.data;
       })
