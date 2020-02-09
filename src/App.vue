@@ -1,7 +1,7 @@
 <template>
   <div class="carnelian">
     <navbar />
-    <div class="container">
+    <div class="container main-container">
       <router-view></router-view>
     </div>
   </div>
