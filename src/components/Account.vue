@@ -2,7 +2,7 @@
   <div class="account">
     <div class="row d-flex align-items-center">
       <h1>Account management</h1>
-      <div class="badge badge-secondary ml-4">Free account</div>
+      <!-- <div class="badge badge-secondary ml-4">Free account</div> -->
     </div>
 
     <form class="col-6">
