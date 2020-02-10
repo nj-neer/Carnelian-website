@@ -123,9 +123,10 @@ export default class LoginForm extends Vue {
         localStorage.setItem("cnl_user", JSON.stringify(response.data.user));
         if (window && window.parent) {
           const data = { token: response.data.token, user: response.data.user };
-          window.parent.postMessage(JSON.stringify(data));
+          debugger;
+          window.parent.postMessage(data, "http://127.0.0.1:8082", false);
         }
-        document.location.href = "/";
+        // document.location.href = "/";
       })
       .catch(() => {
         this.error = true;
