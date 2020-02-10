@@ -1,7 +1,7 @@
 <template>
   <div class="carnelian">
-    <navbar />
-    <div class="container main-container">
+    <navbar v-if="!isEmbed" />
+    <div class="container main-container" v-bind:class="{'embed': isEmbed}">
       <router-view></router-view>
     </div>
   </div>
@@ -16,13 +16,24 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import NavBar from "./components/NavBar.vue";
 import Main from "./components/Main.vue";
 @Component({
+  data: () => {
+    return {
+      isEmbed: Boolean
+    };
+  },
   components: {
     navbar: NavBar,
     welcome: Main
   }
 })
 export default class App extends Vue {
-  mounted() {}
+  isEmbed: boolean = true;
+  mounted() {
+    this.isEmbed = false;
+    if (this.$route.query.embed) {
+      this.isEmbed = true;
+    }
+  }
 }
 </script>
 

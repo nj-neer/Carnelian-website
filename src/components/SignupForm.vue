@@ -89,6 +89,12 @@
           v-bind:class="{'disabled' : !isFormValid}"
           class="btn btn-primary btn-block"
         >Create my account</button>
+        <center>
+          <small>
+            Already have an account ?
+            <a href="/login">Log in</a>
+          </small>
+        </center>
       </form>
     </div>
 
