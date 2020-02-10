@@ -113,6 +113,7 @@ export default class LoginForm extends Vue {
   handleLogin(e) {
     e.preventDefault();
     this.processing = true;
+    this.error = false;
     axios
       .post(window.config.API_URL + "/login", {
         email: this.email,
@@ -121,14 +122,15 @@ export default class LoginForm extends Vue {
       .then(response => {
         localStorage.setItem("cnl_token", response.data.token);
         localStorage.setItem("cnl_user", JSON.stringify(response.data.user));
-        if (window && window.parent) {
+        const embedOrigin = this.$route.query.embedOrigin;
+        if (window && window.parent && embedOrigin) {
           const data = { token: response.data.token, user: response.data.user };
-          debugger;
-          window.parent.postMessage(data, "http://127.0.0.1:8082", false);
+          window.parent.postMessage(data, embedOrigin);
         }
-        // document.location.href = "/";
+        document.location.href = "/";
       })
-      .catch(() => {
+      .catch(error => {
+        console.log(error);
         this.error = true;
       })
       .finally(() => {
