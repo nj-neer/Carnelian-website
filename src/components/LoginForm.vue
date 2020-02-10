@@ -1,5 +1,6 @@
 <template>
-  <div class="login-form">
+  <div class="login-form col-12 col-sm-6 col-md-6 col-lg-6 offset-0 offset-sm-3 align-self-center">
+    <h2>Log in to your account</h2>
     <form @submit="handleLogin">
       <div class="alert alert-danger alert-dismissible fade show" v-if="error">
         <span>Invalid email or password</span>
@@ -21,7 +22,6 @@
           aria-label="Email"
           v-model="email"
           required
-          aria-describedby="basic-addon1"
         />
       </div>
 
@@ -37,7 +37,6 @@
           v-model="password"
           placeholder="Password"
           aria-label="Password"
-          aria-describedby="basic-addon1"
           required
         />
       </div>
@@ -48,8 +47,6 @@
         class="btn btn-primary btn-block"
       >Submit</button>
     </form>
-
-    <hr />
     <center>
       <span>OR</span>
     </center>
@@ -58,6 +55,13 @@
       <i class="mdi mdi-github-circle"></i>
       LOG IN WITH GITHUB
     </button>
+
+    <center>
+      <small>
+        Need an account ?
+        <a href="/signup">Create an account</a>
+      </small>
+    </center>
 
     <!-- <button type="submit" class="btn btn-outline-danger btn-block">
       <i class="mdi mdi-google"></i> LOG IN WITH GOOGLE
