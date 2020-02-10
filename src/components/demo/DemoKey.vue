@@ -87,11 +87,11 @@ export default class DemoKey extends Vue {
               this.togglePlay();
               this.runTimeout = setTimeout(() => {
                 this.run();
-              }, 3000);
-            }, 2000);
-          }, 2000);
-        }, 2000);
-      }, 2000);
+              }, 2000);
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      }, 1000);
     }, 1000);
   }
 
