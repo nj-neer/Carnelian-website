@@ -46,6 +46,9 @@ body{
     }
     .main-container{
         margin-top: 100px;
+        &.embed{
+            margin-top: 0;
+        }
     }
     .jumbotron{
         margin-top: 20px;
