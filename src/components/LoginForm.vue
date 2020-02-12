@@ -59,7 +59,8 @@
     <center>
       <small>
         Need an account ?
-        <a href="/signup">Create an account</a>
+        <a v-if="!embed" href="/signup">Create an account</a>
+        <a v-if="embed" href="/signup?embed=true">Create an account</a>
       </small>
     </center>
 
@@ -86,7 +87,8 @@ declare const window: any;
       email: String,
       password: String,
       processing: Boolean,
-      error: Boolean
+      error: Boolean,
+      embed: Boolean
     };
   }
 })
@@ -95,11 +97,13 @@ export default class LoginForm extends Vue {
   password: string;
   processing: boolean;
   error: boolean;
+  embed: boolean;
   mounted() {
     this.email = "";
     this.password = "";
     this.processing = false;
     this.error = false;
+    this.embed = this.$route.query.embed !== undefined;
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
     });
@@ -123,9 +127,10 @@ export default class LoginForm extends Vue {
         localStorage.setItem("cnl_token", response.data.token);
         localStorage.setItem("cnl_user", JSON.stringify(response.data.user));
         const embedOrigin = this.$route.query.embedOrigin;
-        if (window && window.parent && embedOrigin) {
+        if (window && window.opener && embedOrigin) {
           const data = { token: response.data.token, user: response.data.user };
-          window.parent.postMessage(data, embedOrigin);
+          window.opener.postMessage(data, embedOrigin); // notify the parent
+          window.close(); // close the popup
         }
         document.location.href = "/";
       })

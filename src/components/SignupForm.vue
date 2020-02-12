@@ -1,8 +1,8 @@
 <template>
-  <div class="signup-form">
+  <div class="signup-form col-12 col-sm-6 col-md-6 col-lg-6 offset-0 offset-sm-3">
     <h1>Create a new account</h1>
 
-    <div class="col-6">
+    <div class="row">
       <div class="alert alert-success" v-if="signupSuccess">
         <h5>Check your mails</h5>
         <p>
@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="col-6" v-if="!signupSuccess">
+    <div class="row" v-if="!signupSuccess">
       <div class="alert alert-danger" role="alert" v-if="errorMessage">
         <span>{{errorMessage}}</span>
       </div>
