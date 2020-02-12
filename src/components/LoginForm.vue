@@ -104,6 +104,9 @@ export default class LoginForm extends Vue {
     this.processing = false;
     this.error = false;
     this.embed = this.$route.query.embed !== undefined;
+
+    this.checkGithubCode();
+
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
     });
@@ -111,7 +114,20 @@ export default class LoginForm extends Vue {
 
   handleGithubLogin() {
     document.location.href =
-      "https://github.com/login/oauth/authorize?client_id=e7a85ec74a552b7536a7&redirect_uri=http://www.carnelian.io?login&type=github";
+      "https://github.com/login/oauth/authorize?client_id=e7a85ec74a552b7536a7&redirect_uri=http://www.carnelian.io/login&type=github";
+  }
+
+  /**
+   * Link the user with a github account
+   */
+  handleGithubLoginCodeExchange(code: string) {
+    axios
+      .post(window.config.API_URL + "/loginGithub", {
+        code: code
+      })
+      .then(response => {
+        console.log(response);
+      });
   }
 
   handleLogin(e) {
@@ -141,6 +157,19 @@ export default class LoginForm extends Vue {
       .finally(() => {
         this.processing = false;
       });
+  }
+
+  /**
+   * Check if a github code is provided in the url
+   *
+   * if so, send a code exchange query
+   */
+  checkGithubCode() {
+    const code = String(this.$route.query.code);
+    if (code) {
+      this.processing = true;
+      this.handleGithubLoginCodeExchange(code);
+    }
   }
 }
 </script>
