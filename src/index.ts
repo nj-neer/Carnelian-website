@@ -1,5 +1,6 @@
 
 import Vue from "vue";
+import Notifications from "vue-notification";
 import VueRouter from "vue-router";
 import App from "./App.vue";
 import Account from "./components/Account.vue";
@@ -39,6 +40,7 @@ const router = new VueRouter({
     routes
 });
 
+Vue.use(Notifications);
 Vue.use(VueRouter);
 
 window.config = config;

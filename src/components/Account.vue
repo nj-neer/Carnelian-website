@@ -186,6 +186,11 @@ export default class account extends Vue {
       )
       .then(response => {
         this.user = response.data;
+        this.$notify({
+          type: "success",
+          title: "Account linked",
+          text: "Your Github account has been linked"
+        });
       });
   }
 
@@ -206,6 +211,10 @@ export default class account extends Vue {
       )
       .then(response => {
         this.user = response.data;
+        this.$notify({
+          title: "Account unlinked",
+          text: "Your Github account has been unlinked"
+        });
       })
       .finally(() => {
         this.unlinkProcessing = false;
