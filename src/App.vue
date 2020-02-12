@@ -4,6 +4,7 @@
     <div class="container main-container" v-bind:class="{'embed': isEmbed}">
       <router-view></router-view>
     </div>
+    <notifications position="bottom right" />
   </div>
 </template>
 

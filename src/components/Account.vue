@@ -1,5 +1,9 @@
 <template>
   <div class="account">
+    <div class="preloader" v-if="loading">
+      <div class="preloader-spinner"></div>
+    </div>
+
     <div class="row d-flex align-items-center">
       <h1>Account management</h1>
       <!-- <div class="badge badge-secondary ml-4">Free account</div> -->
@@ -98,7 +102,8 @@ declare const window: any;
       user: Object,
       unlinkProcessing: Boolean,
       processing: Boolean,
-      error: Boolean
+      error: Boolean,
+      loading: Boolean
     };
   }
 })
@@ -107,20 +112,31 @@ export default class account extends Vue {
   error: boolean;
   unlinkProcessing: boolean;
   processing: boolean;
-  mounted() {
+  loading: boolean;
+  async mounted() {
     this.processing = true;
     this.unlinkProcessing = false;
     $(function() {
       $('[data-toggle="tooltip"]').tooltip();
     });
+    try {
+      await this.getInfos();
+    } catch (error) {
+      console.error(error);
+      document.location.href = "/";
+    }
+
     if (this.$route.query.link && this.$route.query.code) {
       this.linkGithubAccount(String(this.$route.query.code));
     }
-    this.getInfos();
   }
 
   getInfos() {
-    if (localStorage.getItem("cnl_token")) {
+    return new Promise((resolve, reject) => {
+      this.loading = true;
+      if (!localStorage.getItem("cnl_token")) {
+        return reject();
+      }
       axios
         .get(window.config.API_URL + "/profile", {
           headers: {
@@ -130,14 +146,17 @@ export default class account extends Vue {
         .then(response => {
           this.user = response.data;
           this.error = false;
+          resolve();
         })
         .catch(() => {
           this.error = true;
+          reject();
         })
         .finally(() => {
           this.processing = false;
+          this.loading = false;
         });
-    }
+    });
   }
 
   getAvatarUrl(): string {
@@ -167,6 +186,11 @@ export default class account extends Vue {
       )
       .then(response => {
         this.user = response.data;
+        this.$notify({
+          type: "success",
+          title: "Account linked",
+          text: "Your Github account has been linked"
+        });
       });
   }
 
@@ -187,6 +211,10 @@ export default class account extends Vue {
       )
       .then(response => {
         this.user = response.data;
+        this.$notify({
+          title: "Account unlinked",
+          text: "Your Github account has been unlinked"
+        });
       })
       .finally(() => {
         this.unlinkProcessing = false;
