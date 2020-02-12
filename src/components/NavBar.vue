@@ -26,7 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <router-link class="nav-link" to="/">About</router-link>
           </li>
 
           <li
@@ -36,6 +36,15 @@
             title="Available soon !"
           >
             <a class="nav-link disabled" href="#">Download</a>
+          </li>
+
+          <li
+            class="nav-item"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Available soon !"
+          >
+            <a class="nav-link disabled" href="#">Try the editor</a>
           </li>
 
           <li
