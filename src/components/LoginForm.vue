@@ -171,8 +171,9 @@ export default class LoginForm extends Vue {
    * if so, send a code exchange query
    */
   checkGithubCode() {
-    const code = String(this.$route.query.code);
+    let code = this.$route.query.code;
     if (code) {
+      code = String(code);
       this.processing = true;
       this.handleGithubLoginCodeExchange(code);
     }
