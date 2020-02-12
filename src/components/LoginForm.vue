@@ -1,7 +1,7 @@
 <template>
   <div class="login-form col-12 col-sm-6 col-md-6 col-lg-6 offset-0 offset-sm-3 align-self-center">
     <h2>Log in to your account</h2>
-    <form @submit="handleLogin">
+    <form @submit="handleLogin" autocomplete="on">
       <div class="alert alert-danger alert-dismissible fade show" v-if="error">
         <span>Invalid email or password</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -59,8 +59,8 @@
     <center>
       <small>
         Need an account ?
-        <a v-if="!embed" href="/signup">Create an account</a>
-        <a v-if="embed" href="/signup?embed=true">Create an account</a>
+        <router-link v-if="!embed" to="/signup">Create an account</router-link>
+        <router-link v-if="embed" to="/signup?embed=true">Create an account</router-link>
       </small>
     </center>
 
@@ -127,6 +127,12 @@ export default class LoginForm extends Vue {
       })
       .then(response => {
         console.log(response);
+      })
+      .catch(error => {
+        this.$notify({
+          type: "error",
+          title: "Failed to sign in with Github"
+        });
       });
   }
 

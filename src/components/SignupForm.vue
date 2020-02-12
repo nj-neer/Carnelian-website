@@ -92,7 +92,8 @@
         <center>
           <small>
             Already have an account ?
-            <a href="/login">Log in</a>
+            <router-link v-if="!embed" to="/login">Log in</router-link>
+            <router-link v-if="embed" to="/login?embed=true">Log in</router-link>
           </small>
         </center>
       </form>
@@ -126,7 +127,8 @@ declare const window: any;
       password_re: String,
       canSubmit: Boolean,
       signupSuccess: Boolean,
-      errorMessage: String
+      errorMessage: String,
+      embed: Boolean
     };
   }
 })
@@ -138,6 +140,7 @@ export default class SignupForm extends Vue {
   canSubmit: boolean;
   signupSuccess: boolean = false;
   errorMessage: string;
+  embed: boolean;
 
   get isPasswordValid(): boolean {
     if (this.password.length < 6 || this.password.length > 32) {
@@ -183,6 +186,7 @@ export default class SignupForm extends Vue {
     this.password_re = "";
     this.signupSuccess = false;
     this.errorMessage = null;
+    this.embed = this.$route.query.embed !== undefined;
   }
 
   handleAccountCreation(e) {
