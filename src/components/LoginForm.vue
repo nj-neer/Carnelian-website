@@ -126,7 +126,7 @@ export default class LoginForm extends Vue {
         code: code
       })
       .then(response => {
-        console.log(response);
+        this.handleLoginResponse(response);
       })
       .catch(error => {
         this.$notify({
@@ -146,15 +146,7 @@ export default class LoginForm extends Vue {
         password: this.password
       })
       .then(response => {
-        localStorage.setItem("cnl_token", response.data.token);
-        localStorage.setItem("cnl_user", JSON.stringify(response.data.user));
-        const embedOrigin = this.$route.query.embedOrigin;
-        if (window && window.opener && embedOrigin) {
-          const data = { token: response.data.token, user: response.data.user };
-          window.opener.postMessage(data, embedOrigin); // notify the parent
-          window.close(); // close the popup
-        }
-        document.location.href = "/";
+        this.handleLoginResponse(response);
       })
       .catch(error => {
         console.log(error);
@@ -177,6 +169,18 @@ export default class LoginForm extends Vue {
       this.processing = true;
       this.handleGithubLoginCodeExchange(code);
     }
+  }
+
+  handleLoginResponse(response) {
+    localStorage.setItem("cnl_token", response.data.token);
+    localStorage.setItem("cnl_user", JSON.stringify(response.data.user));
+    const embedOrigin = this.$route.query.embedOrigin;
+    if (window && window.opener && embedOrigin) {
+      const data = { token: response.data.token, user: response.data.user };
+      window.opener.postMessage(data, embedOrigin); // notify the parent
+      window.close(); // close the popup
+    }
+    document.location.href = "/";
   }
 }
 </script>
