@@ -33,6 +33,7 @@
     "@types/md5": "^2.1.33",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "bootswatch": "^4.4.1",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.1",
     "express": "^4.17.1",
