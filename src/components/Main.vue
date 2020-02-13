@@ -14,7 +14,7 @@
         <a class="btn btn-secondary btn-lg" href="#" role="button">Try the editor</a>-->
       </div>
     </div>
-    <demo />
+    <demo class="d-none d-lg-flex" />
   </div>
 </template>
 
