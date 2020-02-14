@@ -118,8 +118,12 @@ export default class LoginForm extends Vue {
 
   handleGithubLogin() {
     this.processing = true;
-    document.location.href =
+    let returnUrl =
       "https://github.com/login/oauth/authorize?client_id=e7a85ec74a552b7536a7&redirect_uri=http://www.carnelian.io/login&type=github";
+    if (this.embed && this.$route.query.embedOrigin) {
+      returnUrl += "&embed=true&embedOrigin=" + this.$route.query.embedOrigin;
+    }
+    document.location.href = returnUrl;
   }
 
   /**
