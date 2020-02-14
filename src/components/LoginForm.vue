@@ -1,5 +1,9 @@
 <template>
   <div class="login-form col-12 col-sm-6 col-md-6 col-lg-6 offset-0 offset-sm-3 align-self-center">
+    <div class="preloader transparent-preloader" v-if="processing">
+      <div class="preloader-spinner"></div>
+    </div>
+
     <h2>Log in to your account</h2>
     <form @submit="handleLogin" autocomplete="on">
       <div class="alert alert-danger alert-dismissible fade show" v-if="error">
@@ -113,6 +117,7 @@ export default class LoginForm extends Vue {
   }
 
   handleGithubLogin() {
+    this.processing = true;
     document.location.href =
       "https://github.com/login/oauth/authorize?client_id=e7a85ec74a552b7536a7&redirect_uri=http://www.carnelian.io/login&type=github";
   }
@@ -133,6 +138,9 @@ export default class LoginForm extends Vue {
           type: "error",
           title: "Failed to sign in with Github"
         });
+      })
+      .finally(() => {
+        this.processing = false;
       });
   }
 
