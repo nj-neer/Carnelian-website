@@ -103,7 +103,6 @@ export default class LoginForm extends Vue {
   error: boolean;
   embed: boolean;
   mounted() {
-    debugger;
     this.email = "";
     this.password = "";
     this.processing = false;
