@@ -103,6 +103,7 @@ export default class LoginForm extends Vue {
   error: boolean;
   embed: boolean;
   mounted() {
+    debugger;
     this.email = "";
     this.password = "";
     this.processing = false;
@@ -184,11 +185,14 @@ export default class LoginForm extends Vue {
   handleLoginResponse(response) {
     localStorage.setItem("cnl_token", response.data.token);
     localStorage.setItem("cnl_user", JSON.stringify(response.data.user));
-    const embedOrigin = this.$route.query.embedOrigin;
+    const embedOrigin = this.$route.query.embedOrigin || "*";
     if (window && window.opener) {
       const data = { token: response.data.token, user: response.data.user };
+
       window.opener.postMessage(data, embedOrigin); // notify the parent
-      window.close(); // close the popup
+      setTimeout(() => {
+        window.close(); // close the popup
+      }, 500);
     } else {
       document.location.href = "/";
     }
