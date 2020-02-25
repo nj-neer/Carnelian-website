@@ -120,9 +120,7 @@ export default class LoginForm extends Vue {
     this.processing = true;
     let returnUrl =
       "https://github.com/login/oauth/authorize?client_id=e7a85ec74a552b7536a7&redirect_uri=http://www.carnelian.io/login&type=github";
-    if (this.embed && this.$route.query.embedOrigin) {
-      returnUrl += "&embed=true&embedOrigin=" + this.$route.query.embedOrigin;
-    }
+
     document.location.href = returnUrl;
   }
 
@@ -187,7 +185,7 @@ export default class LoginForm extends Vue {
     localStorage.setItem("cnl_token", response.data.token);
     localStorage.setItem("cnl_user", JSON.stringify(response.data.user));
     const embedOrigin = this.$route.query.embedOrigin;
-    if (window && window.opener && embedOrigin) {
+    if (window && window.opener) {
       const data = { token: response.data.token, user: response.data.user };
       window.opener.postMessage(data, embedOrigin); // notify the parent
       window.close(); // close the popup
