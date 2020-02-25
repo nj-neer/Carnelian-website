@@ -191,8 +191,9 @@ export default class LoginForm extends Vue {
       const data = { token: response.data.token, user: response.data.user };
       window.opener.postMessage(data, embedOrigin); // notify the parent
       window.close(); // close the popup
+    } else {
+      document.location.href = "/";
     }
-    document.location.href = "/";
   }
 }
 </script>
